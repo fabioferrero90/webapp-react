@@ -1,20 +1,17 @@
-const ReviewList = () => {
-  const reviews = [
-    { id: 1, content: 'Great movie!', author: 'John Doe' },
-    { id: 2, content: 'Not bad.', author: 'Jane Smith' },
-    // Add more reviews here
-  ];
+const ReviewList = ({ data = [] }) => {
+
+  console.log(data);
 
   return (
     <div>
       <h2>Reviews</h2>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-        {reviews.map(review => (
+        {Array.isArray(data) ? data.map(review => (
           <div key={review.id} style={{ border: '1px solid #ccc', padding: '10px', borderRadius: '5px' }}>
-            <p>{review.content}</p>
-            <p><strong>- {review.author}</strong></p>
+            <p>{review.text}</p>
+            <p><strong>- {review.name}</strong></p>
           </div>
-        ))}
+        )) : <p>No reviews available</p>}
       </div>
     </div>
   );

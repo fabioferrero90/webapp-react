@@ -12,7 +12,13 @@ const StarRating = ({ rating }) => {
     }
   }
 
-  return <div>{stars}</div>;
+  return (
+      <div className="mb-4">
+        {stars}
+      </div>
+
+  )
+    
 };
 
 export default StarRating;

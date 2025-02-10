@@ -6,6 +6,7 @@ const GlobalContext = createContext()
 const GlobalProvider = ({children}) => {
   const api_base_url = import.meta.env.VITE_API_URL
   const [movies, setMovies] = useState([])
+  const [details, setDetails] = useState()
 
   const fetchMoviesData = () => {
     axios.get(`${api_base_url}/movies`)
@@ -15,6 +16,16 @@ const GlobalProvider = ({children}) => {
       .catch(err => {
         console.log('Errore nel caricamento dei Film: ', err);
       })
+    }
+
+  const fetchDetails = (id) => {
+    axios.get(`${api_base_url}/movies/${id}`)
+      .then(res => {
+        setDetails(res.data)
+      })
+      .catch(err => {
+        console.log('Errore nel caricamento dei dati: ', err);
+      })
   }
 
   useEffect(() => {
@@ -22,7 +33,7 @@ const GlobalProvider = ({children}) => {
   }, []);
 
   return (
-    <GlobalContext.Provider value= {{movies, fetchMoviesData}}>
+    <GlobalContext.Provider value= {{movies, fetchMoviesData, fetchDetails, details}}>
       {children}
     </GlobalContext.Provider>
   )
