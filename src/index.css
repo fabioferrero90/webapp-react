@@ -1,0 +1,18 @@
+.nav-item a {
+  color:white;
+  text-decoration: none;
+  font-weight: bold;
+  margin-right:10px;
+}
+
+.nav-item a.active {
+  color:rgb(16, 30, 103)
+}
+
+.post.card-body img{
+  object-fit: cover;
+}
+
+.navbuttons-row .btn {
+  margin-right: 10px;
+}
