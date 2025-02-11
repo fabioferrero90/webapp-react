@@ -13,7 +13,12 @@
   margin-right: 10px;
 }
 
-.card-img-top {
+.card-img-top,
+.detail-cover {
   aspect-ratio: 9/13;
   max-height: 100%;
+}
+
+.preview-img {
+  max-width:100px;
 }

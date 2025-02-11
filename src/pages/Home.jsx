@@ -2,15 +2,20 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
 import { useGlobalContext } from "../context/GlobalContext"
 import Stars from '../components/partials/stars';
+import { use, useEffect } from 'react';
 const Home = () => {
 
-  const { movies } = useGlobalContext()
+  const { movies, fetchMoviesData } = useGlobalContext()
   const navigate = useNavigate();
 
   const handleButtonClick = (id) => {
     navigate(`/${id}`);
   };
   
+  useEffect(() => {
+    fetchMoviesData()
+  }, [])
+
   return (
     <div className="container mt-5">
     <div className="row">

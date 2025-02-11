@@ -5,8 +5,17 @@ const GlobalContext = createContext()
 
 const GlobalProvider = ({children}) => {
   const api_base_url = import.meta.env.VITE_API_URL
+
+  const defaultFormData = {
+    vote: 0,
+    name: '',
+    text: ''
+  }
+
   const [movies, setMovies] = useState([])
   const [details, setDetails] = useState()
+  const [formData, setFormData] = useState(defaultFormData)
+
 
   const fetchMoviesData = () => {
     axios.get(`${api_base_url}/movies`)
