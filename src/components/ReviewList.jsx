@@ -22,6 +22,7 @@ const ReviewList = ({ data = [] , movie_id}) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsLoading(true)
     axios.post(`${api_base_url}/movies/${movie_id}/review`, {
       name: formData.name,
       vote: formData.vote,
@@ -30,7 +31,10 @@ const ReviewList = ({ data = [] , movie_id}) => {
       headers: {
         'Content-Type': 'application/json'
       }
-    });
+    }).finally(
+      setIsLoading(false)
+    )
+    ;
     setFormData({
       name: '',
       vote: '',

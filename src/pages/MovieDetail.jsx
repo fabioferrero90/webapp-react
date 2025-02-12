@@ -7,15 +7,11 @@ import { useGlobalContext } from "../context/GlobalContext"
 const MovieDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { fetchDetails, details } = useGlobalContext();
+  const { fetchDetails, details, deleteMovie } = useGlobalContext();
 
   useEffect(() => {
     fetchDetails(id)  
   }, [id]);
-
-  // if (!details) {
-  //   return <div className="flex justify-content-center align-items-center">Caricamento in corso...</div>;
-  // }
 
   return (
     <div className="flex flex-column m-5">
@@ -28,6 +24,11 @@ const MovieDetail = () => {
           <p><strong>Anno:</strong> {details?.release_year}</p>
           <p><strong>Description:</strong> {details?.abstract}</p>
           <Stars rating="4" />
+          <button className="btn btn-danger" onClick={() => {
+            if (window.confirm('Sei sicuro di voler eliminare questo film?')) {
+              deleteMovie(id, () => navigate(-1));
+            }
+          }}>Elimina Libro</button>
         </div>
       </div>
       { details?.reviews && (
